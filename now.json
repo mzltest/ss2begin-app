@@ -1,0 +1,46 @@
+{
+  "version": 2,
+  "name": "screenie",
+  "scope": "zdx",
+  "alias": ["screenie.zdx.cat"],
+  "public": false,
+  "builds": [
+    { "src": "api/*.ts", "use": "@now/node", "config": { "maxLambdaSize": "40mb" } },
+    { "src": "public/**/*", "use": "@now/static" }
+  ],
+  "routes": [
+    {
+      "src": "/",
+      "methods": ["GET"],
+      "dest": "/public/index.html",
+      "headers": {
+        "cache-control": "s-maxage=31536000",
+        "link": "</public/img/text_image.jpg>; rel=preload; as=image"
+      }
+    },
+    {
+      "src": "/public/img/(.*)",
+      "methods": ["GET"],
+      "headers": {
+        "cache-control": "s-maxage=31536000, max-age=31536000"
+      },
+      "dest": "/public/img/$1"
+    },
+    {
+      "src": "/capture",
+      "methods": ["GET"],
+      "dest": "/api/capture.ts",
+      "headers": {
+        "cache-control": "s-maxage=600, stale-while-revalidate=60"
+      }
+    },
+    {
+      "src": "/*",
+      "status": 404
+    }
+  ],
+  "github": {
+    "enabled": true
+  },
+  "env": {}
+}
