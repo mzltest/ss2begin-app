@@ -3,7 +3,6 @@
     "build": "rimraf built && tsc",
     "watch": "tsc --watch",
     "lint": "tslint -p ./tsconfig.json",
-    "test": "jest",
     "prettier": "prettier --config ./.prettierrc --write \"{src,test,bin,lib,config}/**/*.{ts,json,css,html,md}\""
   },
   "devDependencies": {
