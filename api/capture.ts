@@ -110,7 +110,7 @@ function parseQueryParams(url: string): ScreenshotOptions {
   return parsedValue
 }
 
-exports.handler = async (req: NowRequest, res: NowResponse): Promise<void> {
+exports.handler => async (req: NowRequest, res: NowResponse): Promise<void> {
   const requestId = uuidV4()
   console.log('Request received with id ->', requestId) // tslint:disable-line:no-console
 
